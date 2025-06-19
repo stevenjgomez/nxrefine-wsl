@@ -23,6 +23,7 @@ from nexusformat.nexus import (NeXusError, NXattenuator, NXcollection, NXdata,
                                NXsource, nxopen)
 
 from .nxsettings import NXSettings
+from .nxos import to_posix
 
 prefix_pattern = re.compile(r'^([^.]+)(?:(?<!\d)|(?=_))')
 file_index_pattern = re.compile(r'^(.*?)([0-9]*)[.](.*)$')
@@ -103,7 +104,7 @@ class NXBeamLine:
         self.experiment = self.settings['instrument']['experiment']
         self.raw_home = Path(self.settings['instrument']['raw_home'])
         self.raw_path = self.settings['instrument']['raw_path']
-        self.raw_directory = self.raw_home / self.experiment / self.raw_path
+        self.raw_directory = Path(to_posix(self.raw_home / self.experiment / self.raw_path))
         self.probe = 'xrays'
 
     def __repr__(self):
