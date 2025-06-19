@@ -64,3 +64,5 @@ _unused
 # miscellaneous system files
 .directoryhash
  
+# Scratch files
+scratches/
