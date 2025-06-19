@@ -1900,6 +1900,7 @@ class NXReduce(QtCore.QObject):
                 directory = to_posix(self.directory)
             else:
                 directory = self.directory
+            raise NeXusError(f"Directory to server: {directory}")
             self.server.add_task(
                 f"{command} --directory {directory} "
                 f"--entries {self.entry_name} --{' --'.join(tasks)}")
