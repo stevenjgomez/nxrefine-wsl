@@ -51,7 +51,7 @@ def main():
 
     args = parser.parse_args()
 
-    if args.directory and is_wsl:
+    if ('directory' in args) and is_wsl:
         args.directory = to_posix(args.directory)
 
     if args.entries:
