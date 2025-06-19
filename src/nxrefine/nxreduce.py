@@ -33,6 +33,7 @@ from .nxserver import NXServer
 from .nxsettings import NXSettings
 from .nxsymmetry import NXSymmetry
 from .nxutils import init_julia, load_julia, mask_volume, peak_search
+from .nxos import is_wsl, to_posix
 
 
 class NXReduce(QtCore.QObject):
@@ -1890,10 +1891,16 @@ class NXReduce(QtCore.QObject):
         if args:
             if 'directory' in args:
                 args.directory = os.path.realpath(args.directory)
+                if not is_wsl():
+                    args.directory = to_posix(args.directory)
             self.server.add_task(f"{command} {switches(args)}")
         else:
+            if not is_wsl():
+                directory = to_posix(self.directory)
+            else:
+                directory = self.directory
             self.server.add_task(
-                f"{command} --directory {self.directory} "
+                f"{command} --directory {directory} "
                 f"--entries {self.entry_name} --{' --'.join(tasks)}")
 
     def queue_task(self, task, entry=None):
