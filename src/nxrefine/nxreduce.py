@@ -1893,6 +1893,7 @@ class NXReduce(QtCore.QObject):
                 args.directory = os.path.realpath(args.directory)
                 if not is_wsl():
                     args.directory = to_posix(args.directory)
+            raise NeXusError(f"Directory to server: {args.directory}")
             self.server.add_task(f"{command} {switches(args)}")
         else:
             if not is_wsl():
