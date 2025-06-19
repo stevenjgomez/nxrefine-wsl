@@ -10,7 +10,7 @@
 import argparse
 
 from nxrefine.nxreduce import NXMultiReduce, NXReduce
-
+from nxrefine.nxos import to_posix, is_wsl
 
 def main():
 
@@ -50,6 +50,9 @@ def main():
                         help='add to server task queue')
 
     args = parser.parse_args()
+
+    if args.directory and is_wsl:
+        args.directory = to_posix(args.directory)
 
     if args.entries:
         entries = args.entries
