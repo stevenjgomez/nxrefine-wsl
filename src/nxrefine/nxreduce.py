@@ -1189,7 +1189,7 @@ class NXReduce(QtCore.QObject):
 
     def calculate_radial_sums(self):
         try:
-            from pyFAI.azimuthalIntegrator import AzimuthalIntegrator
+            from pyFAI.integrator.azimuthal import AzimuthalIntegrator
             parameters = (
                 self.entry['instrument/calibration/refinement/parameters'])
             ai = AzimuthalIntegrator(
