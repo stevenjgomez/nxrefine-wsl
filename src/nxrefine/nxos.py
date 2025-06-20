@@ -15,7 +15,7 @@ def to_posix(path):
         formatted_path = f"/mnt/{drive_letter}/{rest}"
         return formatted_path
     
-    raise ValueError("Invalid absolute path.")
+    return str_path
 
 def to_windows(path):
     """Converts absolute POSIX path to absolute Windows path."""
@@ -27,4 +27,4 @@ def to_windows(path):
         formatted_path = f"{drive_letter}:\\{rest}"
         return formatted_path
     
-    raise ValueError("Invalid absolute path.")
+    return str_path
