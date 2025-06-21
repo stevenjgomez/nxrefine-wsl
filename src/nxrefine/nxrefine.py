@@ -795,7 +795,7 @@ class NXRefine:
             np.round((self.k_stop - self.k_start) / self.k_step, 2)) + 1
         self.l_shape = int(
             np.round((self.l_stop - self.l_start) / self.l_step, 2)) + 1
-        self.grid_origin = [self.h_start, self.k_start, self.l_start]
+        self.grid_origin = [float(q) for q in [self.h_start, self.k_start, self.l_start]]
         self.grid_step = [int(np.rint(1.0/self.h_step)),
                           int(np.rint(1.0/self.k_step)),
                           int(np.rint(1.0/self.l_step))]
